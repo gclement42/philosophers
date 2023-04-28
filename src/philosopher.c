@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:27:55 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/28 13:46:16 by gclement         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:53:52 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	*philosopher_routine(void *data)
 t_philo	create_philosopher(t_time_to time_to, int nb)
 {
 	t_philo	philo;
-
 
 	philo.number = nb;
 	philo.time_to = time_to;
