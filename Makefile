@@ -8,13 +8,13 @@ HEADER_DIR				= header/
 HEADER_FILE				= philo.h
 
 DIR						=	src/
-SRC						=	main.c
+SRC						=	main.c thread_management.c philosopher.c ft_atoi.c
 							
 OBJECTS					= $(SRC:%.c=$(BUILD_DIR)%.o)
 
 GCC						= cc
 CFLAGS					= -Wall -Werror -Wextra
-SANITIZE				= $(CFLAGS) -g3 -fsanitize=address
+SANITIZE				= $(CFLAGS) -g3 -fsanitize=address -fsanitize=thread
 
 RM 						= rm -rf
 CLEAR					= clear
@@ -32,10 +32,10 @@ clear:
 						$(CLEAR)
 						
 $(NAME): 				$(OBJECTS)
-						$(GCC) $(OBJECTS) -o $(NAME) -lreadline
+						$(GCC) $(OBJECTS) -o $(NAME) -lpthread
 
 sanit :					$(OBJECTS) 
-						$(GCC) $(SANITIZE) $(OBJECTS) -o $(NAME) -lreadline
+						$(GCC) $(SANITIZE) $(OBJECTS) -o $(NAME) -lpthread
 						
 clean:					
 						@${RM} $(OBJECTS)

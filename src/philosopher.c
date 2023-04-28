@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philosopher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:39:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/28 13:46:20 by gclement         ###   ########.fr       */
+/*   Created: 2023/04/28 11:27:55 by gclement          #+#    #+#             */
+/*   Updated: 2023/04/28 13:46:16 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-# include "struct.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <pthread.h>
+//Routine du philosophe : Manger->Dormir->Penser
+void	*philosopher_routine(void *data)
+{
+	t_philo	*philo;
 
-pthread_t	*create_all_thread(int number_of_philosophers, t_time_to time_to);
-pthread_t	create_thread(t_philo *philo);
+	philo = (t_philo *)data;
+	printf("Thread : Philosopher N.%d\n", philo->number);
+	return (NULL);
+}
 
-/* Philosopher */
-t_philo		create_philosopher(t_time_to time_to, int nb);
-void		*philosopher_routine(void *data);
+t_philo	create_philosopher(t_time_to time_to, int nb)
+{
+	t_philo	philo;
 
-int			ft_atoi(char *str);
 
-#endif
+	philo.number = nb;
+	philo.time_to = time_to;
+	return (philo);
+}

@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:39:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/28 13:46:20 by gclement         ###   ########.fr       */
+/*   Created: 2023/04/28 12:43:14 by gclement          #+#    #+#             */
+/*   Updated: 2023/04/28 13:10:12 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
-# include "struct.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <pthread.h>
+typedef enum s_state
+{
+	EAT,
+	THINK,
+	SLEEP
+}	t_state;
 
-pthread_t	*create_all_thread(int number_of_philosophers, t_time_to time_to);
-pthread_t	create_thread(t_philo *philo);
+typedef struct s_time_to
+{
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+}	t_time_to;
 
-/* Philosopher */
-t_philo		create_philosopher(t_time_to time_to, int nb);
-void		*philosopher_routine(void *data);
-
-int			ft_atoi(char *str);
+typedef struct s_philo
+{
+	int			number;
+	t_time_to	time_to;
+	t_state		state;
+}	t_philo;
 
 #endif
