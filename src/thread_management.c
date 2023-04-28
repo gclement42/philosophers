@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:43:37 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/28 14:24:09 by gclement         ###   ########.fr       */
+/*   Updated: 2023/04/28 15:21:33 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,27 @@
 pthread_t	*create_all_thread(int number_of_philosophers, t_time_to time_to)
 {
 	int			i;
-	t_philo		philo;
+	t_philo		*philosophers;
 	pthread_t	*thread_id;
 
 	i = 0;
+	philosophers = malloc(sizeof(t_philo) * number_of_philosophers);
+	if (!philosophers)
+		return (NULL);
 	thread_id = malloc(sizeof(pthread_t) * number_of_philosophers);
 	if (!thread_id)
-		return (NULL);
+		return (free(philosophers), NULL);
 	while (i < number_of_philosophers)
 	{
-		philo = create_philosopher(time_to, i);
-		thread_id[i] = create_thread(&philo);
+		philosophers[i] = create_philosopher(time_to, i);
+		thread_id[i] = create_thread(&philosophers[i]);
 		pthread_join(thread_id[i], NULL);
+		i++;
+	}
+	i = 0;
+	while (i < number_of_philosophers)
+	{
+		printf("state of philosophe : %d\n", philosophers[i].state);
 		i++;
 	}
 	return (thread_id);
