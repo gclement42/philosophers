@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:39:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/29 14:28:43 by gclement         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:09:48 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # include "struct.h"
 # include <stdio.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 /* thread */
 pthread_t	*create_all_thread(
@@ -30,6 +32,11 @@ t_philo		*create_all_philosophers(
 				int number_of_philosophers, t_time_to time_to);
 void		*philosopher_routine(void *data);
 
+/* Action*/
+
+void		eat(float timestamp,t_philo *philo);
+
+/* Utils */
 int			ft_atoi(char *str);
 
 #endif

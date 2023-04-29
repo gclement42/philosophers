@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:43:37 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/29 14:21:35 by gclement         ###   ########.fr       */
+/*   Updated: 2023/04/29 15:04:30 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ pthread_t	*create_all_thread(
 		pthread_join(thread_id[i], NULL);
 		i++;
 	}
-
 	return (thread_id);
 }
 
@@ -37,7 +36,7 @@ pthread_t	create_thread(t_philo *philo)
 	pthread_t	thread;
 
 	pthread_create(&thread, NULL, philosopher_routine, (void *)philo);
-	printf("creation du thread N.%d\n", philo->number);
+	printf("\e[33mcreation du thread N.%d\e[0m\n", philo->number);
 	return (thread);
 }
 
