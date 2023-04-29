@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:41:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/28 14:32:57 by gclement         ###   ########.fr       */
+/*   Updated: 2023/04/29 14:30:16 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char *argv[])
 	t_time_to	time_to;
 	pthread_t	*thread_id;
 	int			number_of_philosopher;
+	t_philo		*philosophers;
 
 	number_of_philosopher = ft_atoi(argv[1]);
 	if (number_of_philosopher < 1)
@@ -42,7 +43,10 @@ int	main(int argc, char *argv[])
 		time_to = init_arg_struct(argv);
 	else
 		return (printf("not the right number of arguments\n"), 0);
-	thread_id = create_all_thread(number_of_philosopher, time_to);
+	philosophers = create_all_philosophers(number_of_philosopher, time_to);
+	if (!philosophers)
+		return (0);
+	thread_id = create_all_thread(number_of_philosopher, philosophers);
 	wait_thread(thread_id, number_of_philosopher);
 	return (0);
 }

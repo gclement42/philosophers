@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:43:14 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/28 15:11:56 by gclement         ###   ########.fr       */
+/*   Updated: 2023/04/29 14:08:59 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef enum s_bool
 {
 	FALSE,
 	TRUE
-} t_bool;
+}	t_bool;
 
 typedef struct s_time_to
 {
@@ -35,10 +35,12 @@ typedef struct s_time_to
 
 typedef struct s_philo
 {
-	int				number;
-	t_bool			fork_available;
-	t_time_to		time_to;
-	t_state			state;
+	int						number;
+	t_bool					fork_available;
+	t_time_to				time_to;
+	t_state					state;
+	struct s_philo			*left;
+	struct s_philo			*right;
 }	t_philo;
 
 #endif
