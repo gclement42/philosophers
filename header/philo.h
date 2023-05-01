@@ -27,16 +27,19 @@ pthread_t	create_thread(t_philo *philo);
 void		wait_thread(pthread_t *thread_id, int nb);
 
 /* Philosopher */
-t_philo		create_philosopher(t_time_to time_to, int nb);
+t_philo		create_philosopher(t_time_to time_to, struct timeval time_start, int nb);
 t_philo		*create_all_philosophers(
 				int number_of_philosophers, t_time_to time_to);
 void		*philosopher_routine(void *data);
 
 /* Action*/
 
-void		eat(float timestamp,t_philo *philo);
+void		is_eat(struct timeval start, t_philo *philo);
+void		is_sleep(struct timeval start, t_philo *philo);
+void		is_think(struct timeval start, t_philo *philo);
 
 /* Utils */
 int			ft_atoi(char *str);
+float		time_diff(struct timeval *start, struct timeval *end);
 
 #endif

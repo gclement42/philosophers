@@ -15,6 +15,7 @@
 
 # include "philo.h"
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef enum s_state
 {
@@ -38,6 +39,8 @@ typedef struct s_time_to
 
 typedef struct s_philo
 {
+	struct timeval			time_start;
+	pthread_t				id;
 	pthread_mutex_t			mutex;
 	int						number;
 	t_bool					fork_available;
