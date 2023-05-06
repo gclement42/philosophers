@@ -26,9 +26,10 @@ pthread_t	*create_all_thread(
 	{
 		philosophers->id = create_thread(&philosophers[i]);
 		thread_id[i] = philosophers->id;
-		pthread_join(thread_id[i], NULL);
+		//pthread_join(thread_id[i], NULL);
 		i++;
 	}
+	//wait_thread(thread_id, number_of_philosophers);
 	return (thread_id);
 }
 

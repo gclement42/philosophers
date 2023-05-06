@@ -19,11 +19,14 @@ void	*philosopher_routine(void *data)
 	struct timeval	end;
 
 	philo = (t_philo *)data;
-	pthread_join(philo->left->id, NULL);
-	is_eat(philo->time_start, philo);
-	gettimeofday(&end, NULL);
-	is_sleep(philo->time_start, philo);
-	is_think(philo->time_start, philo);
+	pthread_join(philo->id, NULL);
+	while (1)
+	{
+		is_eat(philo->time_start, philo);
+		gettimeofday(&end, NULL);
+		is_sleep(philo->time_start, philo);
+		is_think(philo->time_start, philo);
+	}
 	return (NULL);
 }
 
