@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:27:55 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/29 16:10:21 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:07:46 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@
 void	*philosopher_routine(void *data)
 {
 	t_philo			*philo;
-	struct timeval	end;
 
 	philo = (t_philo *)data;
-	pthread_join(philo->id, NULL);
-	while (1)
+	gettimeofday(&philo->last_meal, NULL);
+	while (1 || (philo->time_to.nb_times_must_eat > 0 \
+		&& philo->count_eat < philo->time_to.nb_times_must_eat))
 	{
 		is_eat(philo->time_start, philo);
-		gettimeofday(&end, NULL);
 		is_sleep(philo->time_start, philo);
 		is_think(philo->time_start, philo);
 	}
@@ -36,9 +35,10 @@ t_philo	create_philosopher(t_time_to time_to, struct timeval time_start, int nb)
 
 	philo.number = nb + 1;
 	philo.time_to = time_to;
-	philo.fork_available = TRUE;
+	philo.fork.available = TRUE;
 	philo.time_start = time_start;
-	pthread_mutex_init(&philo.mutex, NULL);
+	philo.count_eat = 0;
+	pthread_mutex_init(&philo.fork.mutex, NULL);
 	return (philo);
 }
 
@@ -47,16 +47,14 @@ void	place_around_table(t_philo *philosophers, int number_of_philosophers)
 	int	i;
 
 	i = 0;
-	while (i < number_of_philosophers)
+	if (number_of_philosophers == 1)
+		philosophers[i].fork_right = NULL;
+	while (i < number_of_philosophers && number_of_philosophers != 1)
 	{
-		if (i == 0)
-			philosophers[i].left = &philosophers[number_of_philosophers - 1];
-		else
-			philosophers[i].left = &philosophers[i - 1];
 		if (i == number_of_philosophers - 1)
-			philosophers[i].right = &philosophers[0];
+			philosophers[i].fork_right = &philosophers[0].fork;
 		else
-			philosophers[i].right = &philosophers[i + 1];
+			philosophers[i].fork_right = &philosophers[i + 1].fork;
 		i++;
 	}
 }

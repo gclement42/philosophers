@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:43:14 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/29 14:58:27 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:57:08 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,14 @@ typedef struct s_time_to
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
+	int	nb_times_must_eat;
 }	t_time_to;
+
+typedef struct s_fork
+{
+	t_bool					available;
+	pthread_mutex_t			mutex;
+}	t_fork;
 
 typedef struct s_philo
 {
@@ -43,11 +50,11 @@ typedef struct s_philo
 	pthread_t				id;
 	pthread_mutex_t			mutex;
 	int						number;
-	t_bool					fork_available;
+	t_fork					fork;
 	t_time_to				time_to;
-	t_state					state;
-	struct s_philo			*left;
-	struct s_philo			*right;
+	int						count_eat;
+	struct timeval			last_meal;
+	t_fork					*fork_right;
 }	t_philo;
 
 #endif

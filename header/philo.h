@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:39:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/29 16:09:48 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:33:36 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ void		*philosopher_routine(void *data);
 void		is_eat(struct timeval start, t_philo *philo);
 void		is_sleep(struct timeval start, t_philo *philo);
 void		is_think(struct timeval start, t_philo *philo);
+void		is_dying(struct timeval start, t_philo *philo);
 
 /* Utils */
 int			ft_atoi(char *str);
-float		time_diff(struct timeval *start, struct timeval *end);
+long		time_diff(struct timeval *start);
 
 #endif

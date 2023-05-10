@@ -1,6 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time_diff.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/09 08:22:35 by gclement          #+#    #+#             */
+/*   Updated: 2023/05/09 10:53:27 by gclement         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-float	time_diff(struct timeval *start, struct timeval *end)
+long	time_diff(struct timeval *start)
 {
-    return ((end->tv_usec - start->tv_usec));
+	struct timeval	end;
+
+	gettimeofday(&end, NULL);
+	return ((end.tv_sec - start->tv_sec) * 1000
+		+ (end.tv_usec - start->tv_usec) / 1000);
 }

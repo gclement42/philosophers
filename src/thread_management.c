@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:43:37 by gclement          #+#    #+#             */
-/*   Updated: 2023/04/29 15:04:30 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:52:59 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ pthread_t	*create_all_thread(
 	while (i < number_of_philosophers)
 	{
 		philosophers->id = create_thread(&philosophers[i]);
+		usleep(50);
 		thread_id[i] = philosophers->id;
-		//pthread_join(thread_id[i], NULL);
 		i++;
 	}
-	//wait_thread(thread_id, number_of_philosophers);
 	return (thread_id);
 }
 
