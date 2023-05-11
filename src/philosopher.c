@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:27:55 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/11 14:53:37 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:28:15 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*philosopher_routine(void *data)
 	t_philo			*philo;
 
 	philo = (t_philo *)data;
-	philo->last_meal = philo->time_start;
 	if (philo->number % 2 == 1)
 		usleep(philo->time_to.eat * 1000);
 	while (philo->is_dead == FALSE || (philo->time_to.nb_times_must_eat > 0 \
@@ -39,6 +38,7 @@ t_philo	create_philosopher(t_time_to time_to, struct timeval time_start, int nb)
 	philo.time_to = time_to;
 	philo.fork.available = TRUE;
 	philo.time_start = time_start;
+	philo.last_meal = time_start;
 	philo.count_eat = 0;
 	pthread_mutex_init(&philo.fork.mutex, NULL);
 	return (philo);
