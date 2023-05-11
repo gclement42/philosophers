@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:39:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/09 13:33:36 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:36:14 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void		is_eat(struct timeval start, t_philo *philo);
 void		is_sleep(struct timeval start, t_philo *philo);
 void		is_think(struct timeval start, t_philo *philo);
 void		is_dying(struct timeval start, t_philo *philo);
+
+void		check_if_die(t_philo *philosophers, int number_of_philosophers);
 
 /* Utils */
 int			ft_atoi(char *str);

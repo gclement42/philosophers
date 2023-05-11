@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:27:55 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/10 15:07:46 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:53:37 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	*philosopher_routine(void *data)
 	t_philo			*philo;
 
 	philo = (t_philo *)data;
-	gettimeofday(&philo->last_meal, NULL);
-	while (1 || (philo->time_to.nb_times_must_eat > 0 \
+	philo->last_meal = philo->time_start;
+	if (philo->number % 2 == 1)
+		usleep(philo->time_to.eat * 1000);
+	while (philo->is_dead == FALSE || (philo->time_to.nb_times_must_eat > 0 \
 		&& philo->count_eat < philo->time_to.nb_times_must_eat))
 	{
 		is_eat(philo->time_start, philo);

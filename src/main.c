@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:41:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/09 15:32:35 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:36:51 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ static t_time_to	init_arg_struct(char *argv[])
 {
 	t_time_to	time_to;
 
-	time_to.time_to_die = ft_atoi(argv[2]);
-	time_to.time_to_eat = ft_atoi(argv[3]);
-	time_to.time_to_sleep = ft_atoi(argv[4]);
+	time_to.die = ft_atoi(argv[2]);
+	time_to.eat = ft_atoi(argv[3]);
+	time_to.sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		time_to.nb_times_must_eat = ft_atoi(argv[5]);
 	else
 		time_to.nb_times_must_eat = -1;
-	if (time_to.time_to_die < 1 || time_to.time_to_eat < 1
-		|| time_to.time_to_sleep < 1)
+	if (time_to.die < 1 || time_to.eat < 1
+		|| time_to.sleep < 1)
 	{
 		printf("not the good arguments\n");
 		exit(0);
@@ -50,7 +50,9 @@ int	main(int argc, char *argv[])
 	philosophers = create_all_philosophers(number_of_philosopher, time_to);
 	if (!philosophers)
 		return (0);
+	printf("\n-------------------DEBUT---------------------\n");
 	thread_id = create_all_thread(number_of_philosopher, philosophers);
+	check_if_die(philosophers, number_of_philosopher);
 	wait_thread(thread_id, number_of_philosopher);
 	return (0);
 }
