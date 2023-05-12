@@ -25,16 +25,14 @@ void	*philosopher_routine(void *data)
 		is_eat(philo->time_start, philo);
 		is_sleep(philo->time_start, philo);
 		is_think(philo->time_start, philo);
-		printf("N. %d must_eat = %d, count = %d\n",philo->number, philo->time_to.nb_times_must_eat, philo->count_eat);
 		if ((philo->time_to.nb_times_must_eat > 0 \
 			&& philo->count_eat == philo->time_to.nb_times_must_eat))
 		{
 			philo->fork.available = TRUE;
+			philo->stop = TRUE;
 			break ;
 		}
 	}
-	printf("N. %d must_eat = %d, count = %d\n",philo->number, philo->time_to.nb_times_must_eat, philo->count_eat);
-	printf("N. %d fini de manger\n", philo->number);
 	return (NULL);
 }
 
@@ -47,6 +45,7 @@ t_philo	create_philosopher(t_time_to time_to, struct timeval time_start, int nb)
 	philo.fork.available = TRUE;
 	philo.time_start = time_start;
 	philo.last_meal = time_start;
+	philo.stop = FALSE; 
 	philo.count_eat = 0;
 	pthread_mutex_init(&philo.fork.mutex, NULL);
 	return (philo);

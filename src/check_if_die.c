@@ -17,10 +17,7 @@ void	is_dying(t_philo *philo)
 	double			time;
 
 	time = time_diff(&philo->last_meal);
-	if ((philo->time_to.nb_times_must_eat > 0 \
-		&& philo->count_eat == philo->time_to.nb_times_must_eat))
-		return ;
-	if (time > philo->time_to.die)
+	if (time > philo->time_to.die && philo->stop == FALSE)
 	{
 		philo->is_dead = TRUE;
 		printf("\033[0;31m%ldms %d died\033[0m\n"
@@ -31,20 +28,16 @@ void	is_dying(t_philo *philo)
 void	check_if_die(t_philo *philosophers, int number_of_philosophers)
 {
 	int		i;
-	t_philo	*p_philo;
-	//int		count;
+	int		count;
 
 	i = 0;
-	//count = 0;
 	while (1)
 	{
+		count = 0;
 		is_dying(&philosophers[i]);
-		// if ((philosophers[i].time_to.nb_times_must_eat > 0 
-		// && philosophers[i].count_eat == philosophers[i].time_to.nb_times_must_eat))
-		// 	count++;
-		// if (count == number_of_philosophers - 1)
-		// 	break ;
-		if (philosophers[i].is_dead)
+		while (count < number_of_philosophers - 1 && philosophers[count].stop == TRUE)
+			count++;
+		if (philosophers[i].is_dead || count == number_of_philosophers - 1)
 			break ;
 		if (i < number_of_philosophers - 1)
 			i++;
@@ -54,8 +47,7 @@ void	check_if_die(t_philo *philosophers, int number_of_philosophers)
 	i = 0;
 	while (i < number_of_philosophers)
 	{
-		p_philo = &philosophers[i];
-		p_philo->is_dead = TRUE;
+		philosophers[i].is_dead = TRUE;
 		i++;
 	}
 	free(philosophers);

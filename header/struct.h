@@ -56,6 +56,7 @@ typedef struct s_philo
 	struct timeval			last_meal;
 	t_fork					*fork_right;
 	t_bool					is_dead;
+	t_bool					stop;
 }	t_philo;
 
 #endif
