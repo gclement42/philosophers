@@ -48,6 +48,7 @@ t_philo	create_philosopher(t_time_to time_to, struct timeval time_start, int nb)
 	philo.stop = FALSE; 
 	philo.count_eat = 0;
 	pthread_mutex_init(&philo.fork.mutex, NULL);
+	pthread_mutex_init(&philo.mutex, NULL);
 	return (philo);
 }
 
