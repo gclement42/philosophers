@@ -20,13 +20,21 @@ void	*philosopher_routine(void *data)
 	philo = (t_philo *)data;
 	if (philo->number % 2 == 1)
 		usleep(philo->time_to.eat * 1000);
-	while (philo->is_dead == FALSE || (philo->time_to.nb_times_must_eat > 0 \
-		&& philo->count_eat < philo->time_to.nb_times_must_eat))
+	while (philo->is_dead == FALSE)
 	{
 		is_eat(philo->time_start, philo);
 		is_sleep(philo->time_start, philo);
 		is_think(philo->time_start, philo);
+		printf("N. %d must_eat = %d, count = %d\n",philo->number, philo->time_to.nb_times_must_eat, philo->count_eat);
+		if ((philo->time_to.nb_times_must_eat > 0 \
+			&& philo->count_eat == philo->time_to.nb_times_must_eat))
+		{
+			philo->fork.available = TRUE;
+			break ;
+		}
 	}
+	printf("N. %d must_eat = %d, count = %d\n",philo->number, philo->time_to.nb_times_must_eat, philo->count_eat);
+	printf("N. %d fini de manger\n", philo->number);
 	return (NULL);
 }
 
@@ -71,7 +79,8 @@ t_philo	*create_all_philosophers(int number_of_philosophers, t_time_to time_to)
 	philosophers = malloc(sizeof(t_philo) * number_of_philosophers);
 	if (!philosophers)
 		return (NULL);
-	gettimeofday(&time_start, NULL);
+	if (gettimeofday(&time_start, NULL) == -1)
+		return (printf("philo : gettimeofday error\n"), NULL);
 	while (i < number_of_philosophers)
 	{
 		philosophers[i] = create_philosopher(time_to, time_start, i);

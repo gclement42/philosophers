@@ -17,6 +17,9 @@ void	is_dying(t_philo *philo)
 	double			time;
 
 	time = time_diff(&philo->last_meal);
+	if ((philo->time_to.nb_times_must_eat > 0 \
+		&& philo->count_eat == philo->time_to.nb_times_must_eat))
+		return ;
 	if (time > philo->time_to.die)
 	{
 		philo->is_dead = TRUE;
@@ -29,11 +32,18 @@ void	check_if_die(t_philo *philosophers, int number_of_philosophers)
 {
 	int		i;
 	t_philo	*p_philo;
+	//int		count;
 
 	i = 0;
+	//count = 0;
 	while (1)
 	{
 		is_dying(&philosophers[i]);
+		// if ((philosophers[i].time_to.nb_times_must_eat > 0 
+		// && philosophers[i].count_eat == philosophers[i].time_to.nb_times_must_eat))
+		// 	count++;
+		// if (count == number_of_philosophers - 1)
+		// 	break ;
 		if (philosophers[i].is_dead)
 			break ;
 		if (i < number_of_philosophers - 1)
@@ -48,4 +58,5 @@ void	check_if_die(t_philo *philosophers, int number_of_philosophers)
 		p_philo->is_dead = TRUE;
 		i++;
 	}
+	free(philosophers);
 }

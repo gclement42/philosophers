@@ -52,6 +52,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	printf("\n-------------------DEBUT---------------------\n");
 	thread_id = create_all_thread(number_of_philosopher, philosophers);
+	if (!thread_id)
+		return (0);
 	check_if_die(philosophers, number_of_philosopher);
 	wait_thread(thread_id, number_of_philosopher);
 	return (0);
