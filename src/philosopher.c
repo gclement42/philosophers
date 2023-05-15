@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:27:55 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/15 14:30:31 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:55:49 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_philo	*create_all_philosophers(int number_of_philosophers, t_time_to time_to)
 	while (i < number_of_philosophers)
 	{
 		philosophers[i] = create_philosopher(time_to, time_start, i);
+		philosophers[i].number_of_philosophers = number_of_philosophers;
 		i++;
 	}
 	place_around_table(philosophers, number_of_philosophers);
