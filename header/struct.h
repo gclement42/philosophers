@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:43:14 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/11 13:41:21 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:43:24 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ typedef enum s_bool
 
 typedef struct s_time_to
 {
-	int	die;
-	int	eat;
-	int	sleep;
-	int	nb_times_must_eat;
+	int		die;
+	int		eat;
+	int		sleep;
+	int		nb_times_must_eat;
+	t_bool	b_must_eat;
 }	t_time_to;
 
 typedef struct s_fork

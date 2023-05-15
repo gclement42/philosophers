@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:13:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/11 15:24:30 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:38:11 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	take_fork(struct timeval start, t_philo *philo)
 	philo->fork_right->available = FALSE;
 	pthread_mutex_lock(&philo->fork_right->mutex);
 	pthread_mutex_lock(&philo->fork.mutex);
-	printf("%ldms %d has taken a fork\n", time_diff(&start), philo->number);
+	if (philo->is_dead == FALSE)
+		printf("%ldms %d has taken a fork\n", time_diff(&start), philo->number);
 }
 
 void	is_eat(struct timeval start, t_philo *philo)
