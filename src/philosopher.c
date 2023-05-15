@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:27:55 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/11 15:28:15 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:30:31 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_philo	create_philosopher(t_time_to time_to, struct timeval time_start, int nb)
 	philo.fork.available = TRUE;
 	philo.time_start = time_start;
 	philo.last_meal = time_start;
-	philo.stop = FALSE; 
+	philo.stop = FALSE;
 	philo.count_eat = 0;
 	pthread_mutex_init(&philo.fork.mutex, NULL);
 	pthread_mutex_init(&philo.mutex, NULL);

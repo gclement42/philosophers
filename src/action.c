@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 15:13:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/15 12:38:11 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:22:00 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ void	is_sleep(struct timeval start, t_philo *philo)
 
 void	is_think(struct timeval start, t_philo *philo)
 {
-	long	time;
+	//long			time;
+	//struct timeval	begin;
 
-	time = time_diff(&philo->last_meal);
+	//gettimeofday(&begin, NULL);
+	//time = time_diff(&begin);
 	if (philo->is_dead == FALSE)
 		printf("%ldms %d is thinking\n", time_diff(&start), philo->number);
-	while (time <= philo->time_to.die - philo->time_to.eat - 100)
-		time = time_diff(&philo->last_meal);
+	usleep((philo->time_to.eat - 200) * 1000);
 	return ;
 }

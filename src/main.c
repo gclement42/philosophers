@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:41:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/15 12:44:58 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:20:50 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ static t_time_to	init_arg_struct(char *argv[])
 	time_to.eat = ft_atoi(argv[3]);
 	time_to.sleep = ft_atoi(argv[4]);
 	if (argv[5])
+	{
 		time_to.nb_times_must_eat = ft_atoi(argv[5]);
+		time_to.b_must_eat = TRUE;
+	}
 	else
+	{
 		time_to.nb_times_must_eat = -1;
+		time_to.b_must_eat = FALSE;
+	}
 	return (time_to);
 }
 
