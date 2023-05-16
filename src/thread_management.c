@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:43:37 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/11 14:35:39 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:39:35 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ pthread_t	create_thread(t_philo *philo)
 	return (thread);
 }
 
-void	wait_thread(pthread_t *thread_id, int nb)
+void	wait_thread(pthread_t *thread_id, t_philo *philosophers, int nb)
 {
 	int	i;
 
@@ -49,6 +49,12 @@ void	wait_thread(pthread_t *thread_id, int nb)
 	while (i < nb)
 	{
 		pthread_join(thread_id[i], NULL);
+		i++;
+	}
+	i = 0;
+	while (i < nb)
+	{
+		pthread_mutex_destroy(&philosophers[i].fork.mutex);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:43:14 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/15 14:54:09 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:34:43 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_fork
 {
 	t_bool					available;
 	pthread_mutex_t			mutex;
+	t_bool					destroy;
 }	t_fork;
 
 typedef struct s_philo
@@ -50,7 +51,6 @@ typedef struct s_philo
 	int						number_of_philosophers;
 	struct timeval			time_start;
 	pthread_t				id;
-	pthread_mutex_t			mutex;
 	int						number;
 	t_fork					fork;
 	t_time_to				time_to;

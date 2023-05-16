@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:41:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/15 14:20:50 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:20:24 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char *argv[])
 	thread_id = create_all_thread(number_of_philosopher, philosophers);
 	if (!thread_id)
 		return (0);
-	check_if_die(philosophers, number_of_philosopher);
-	wait_thread(thread_id, number_of_philosopher);
+	check_if_die(philosophers, thread_id, number_of_philosopher);
+	wait_thread(thread_id, philosophers, number_of_philosopher);
 	return (0);
 }

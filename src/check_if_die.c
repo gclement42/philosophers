@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:21:48 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/15 16:26:13 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:13:22 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void	is_dying(t_philo *philo)
 	}
 }
 
-void	check_if_die(t_philo *philosophers, int number_of_philosophers)
+void	check_if_die(t_philo *philosophers, pthread_t *thread_id, int number_of_philosophers)
 {
 	int		i;
 	int		count;
 
 	i = 0;
+	(void) thread_id;
 	while (1)
 	{
 		count = 0;
@@ -49,10 +50,7 @@ void	check_if_die(t_philo *philosophers, int number_of_philosophers)
 	while (i < number_of_philosophers)
 	{
 		philosophers[i].is_dead = TRUE;
-		pthread_mutex_lock(&philosophers[i].fork.mutex);
-		pthread_mutex_unlock(&philosophers[i].fork.mutex);
-		pthread_mutex_destroy(&philosophers[i].fork.mutex);
 		i++;
 	}
-	free(philosophers);
+	//free(philosophers);
 }

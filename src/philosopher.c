@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:27:55 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/15 14:55:49 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:54:42 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ void	*philosopher_routine(void *data)
 		if ((philo->time_to.nb_times_must_eat > 0 \
 			&& philo->count_eat == philo->time_to.nb_times_must_eat))
 		{
-			philo->fork.available = TRUE;
+			if (philo->fork.available == FALSE)
+				philo->fork.available = TRUE;
 			philo->stop = TRUE;
 			break ;
 		}
 	}
+	philo->fork.destroy = TRUE;
 	return (NULL);
 }
 
@@ -43,12 +45,12 @@ t_philo	create_philosopher(t_time_to time_to, struct timeval time_start, int nb)
 	philo.number = nb + 1;
 	philo.time_to = time_to;
 	philo.fork.available = TRUE;
+	philo.fork.destroy = FALSE;
 	philo.time_start = time_start;
 	philo.last_meal = time_start;
 	philo.stop = FALSE;
 	philo.count_eat = 0;
 	pthread_mutex_init(&philo.fork.mutex, NULL);
-	pthread_mutex_init(&philo.mutex, NULL);
 	return (philo);
 }
 

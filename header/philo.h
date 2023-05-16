@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:39:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/11 15:03:47 by gclement         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:20:10 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 pthread_t	*create_all_thread(
 				int number_of_philosophers, t_philo *philosophers);
 pthread_t	create_thread(t_philo *philo);
-void		wait_thread(pthread_t *thread_id, int nb);
+void		wait_thread(pthread_t *thread_id, t_philo *philosophers, int nb);
 
 /* Philosopher */
 t_philo		create_philosopher(t_time_to time_to, struct timeval time_start, int nb);
@@ -39,7 +39,8 @@ void		is_sleep(struct timeval start, t_philo *philo);
 void		is_think(struct timeval start, t_philo *philo);
 void		is_dying(t_philo *philo);
 
-void		check_if_die(t_philo *philosophers, int number_of_philosophers);
+void		check_if_die(t_philo *philosophers \
+		, pthread_t *thread_id, int number_of_philosophers);
 
 /* Utils */
 int			ft_atoi(char *str);
